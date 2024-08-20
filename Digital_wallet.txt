@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool payment(int a,int b,int c,vector<pair<int,int>>&v){
+     if(v[a-1].second >=c)
+     {
+        v[b-1].second+=c;
+         v[a-1].second-=c;
+         return true;
+     }
+    return false;
+}
+bool compare(pair<int,int>&a,pair<int,int>&b){
+    return a.second<b.second;
+}
+int main() {
+  int n;
+    cin>>n;
+        vector<pair<int,int>>v;
+    for(int i=0;i<n;i++){
+        int a,b;
+        cin>>a>>b;
+        v.push_back({a,b});   
+    }
+    int t;
+    cin>>t;
+    while(t--){
+        int a,b,c;
+        cin>>a>>b>>c;
+        bool k= payment(a,b,c,v);
+        if(k)
+            cout<<"Success\n";
+        else
+            cout<<"Failure\n";
+    }
+    cout<<"\n";
+    sort(v.begin(),v.end(),compare);
+    for(auto [x,y]:v)
+        cout<<x<<" "<<y<<"\n";
+    return 0;
+}
